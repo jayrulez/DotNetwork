@@ -14,6 +14,15 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+# Misc
+/OpenRSS
+/RSUtilities
+/packages
+/DotNetwork/bin
+/DotNetwork/obj
+*.user
+/DotNetwork/App.config
+
 # Windows shortcuts
 *.lnk
 
@@ -45,3 +54,4 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.userprefs
