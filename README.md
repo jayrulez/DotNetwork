@@ -1,3 +1,5 @@
+![logo-open-source](https://github.com/jordanabrahambaws/DotNetwork/blob/master/logo.png?raw=true)
+
 # DotNetwork (.NET)
 [![Join the chat at https://gitter.im/DotNetwork/Lobby](https://badges.gitter.im/DotNetwork/Lobby.svg)](https://gitter.im/DotNetwork/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
