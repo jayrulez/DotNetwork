@@ -37,7 +37,7 @@ namespace DotNetwork.Oldscape.Network.Listener.Impl
                         break;
                 }
 
-                context.Channel.WriteAndFlushAsync(new HandshakeResponse(request.GetHandshakeType(), response));
+                WriteAndFlushAsync(context, new HandshakeResponse(request.GetHandshakeType(), response));
             }
         }
     }

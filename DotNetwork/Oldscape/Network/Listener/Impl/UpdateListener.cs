@@ -41,7 +41,7 @@ namespace DotNetwork.Oldscape.Network.Listener.Impl
                 }
 
                 if (container != null)
-                    context.Channel.WriteAndFlushAsync(new UpdateResponse(index, archive, request.IsPriority(), container));
+                    WriteAndFlushAsync(context, new UpdateResponse(index, archive, request.IsPriority(), container));
             }
         }
     }
