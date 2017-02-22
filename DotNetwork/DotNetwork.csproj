@@ -37,6 +37,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -126,7 +127,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Net.Http.4.3.0\lib\net46\System.Net.Http.dll</HintPath>
+      <HintPath>..\packages\System.Net.Http.4.3.1\lib\net46\System.Net.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Sockets, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -166,8 +167,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Oldscape\Constants.cs" />
+    <Compile Include="Oldscape\Game\Model\Entity\Actor\Player\Info\MachineInformation.cs" />
+    <Compile Include="Oldscape\Network\Listener\Impl\LoginListener.cs" />
     <Compile Include="Oldscape\Network\Listener\Impl\UpdateListener.cs" />
-    <Compile Include="Oldscape\Network\Protocol\CacheStore\CacheManager.cs" />
+    <Compile Include="Oldscape\Network\Protocol\CacheFS\CacheManager.cs" />
     <Compile Include="Oldscape\Network\Protocol\Codec\Handshake\HandshakeRequest.cs" />
     <Compile Include="Oldscape\Network\Listener\Impl\HandshakeListener.cs" />
     <Compile Include="Oldscape\Network\Listener\NetworkListener.cs" />
@@ -177,6 +180,11 @@
     <Compile Include="Oldscape\Network\Protocol\Codec\Handshake\HandshakeDecoder.cs" />
     <Compile Include="Oldscape\Network\Protocol\Codec\Handshake\HandshakeEncoder.cs" />
     <Compile Include="Oldscape\Network\Protocol\Codec\Handshake\HandshakeResponse.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Codec\Login\Login.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Codec\Login\LoginDecoder.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Codec\Login\LoginEncoder.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Codec\Login\LoginRequest.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Codec\Login\LoginResponse.cs" />
     <Compile Include="Oldscape\Network\Protocol\Codec\Update\Update.cs" />
     <Compile Include="Oldscape\Network\Protocol\Codec\Update\UpdateDecoder.cs" />
     <Compile Include="Oldscape\Network\Protocol\Codec\Update\UpdateEncoder.cs" />
@@ -184,6 +192,9 @@
     <Compile Include="Oldscape\Network\Protocol\Codec\Update\UpdateResponse.cs" />
     <Compile Include="Oldscape\Network\Protocol\ConnectionMessage.cs" />
     <Compile Include="Oldscape\Server.cs" />
+    <Compile Include="Oldscape\Util\Buf\IByteBufferExtensions.cs" />
+    <Compile Include="Oldscape\Util\Isaac\IsaacRandGroup.cs" />
+    <Compile Include="Oldscape\Util\Utilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -194,6 +205,10 @@
     <ProjectReference Include="..\OpenRSS\OpenRSS.csproj">
       <Project>{afa0d36f-f8c5-4897-8d36-11d155d3e144}</Project>
       <Name>OpenRSS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rand\Rand.csproj">
+      <Project>{7c8cbc34-7269-475f-9d7c-562d7fbd6650}</Project>
+      <Name>Rand</Name>
     </ProjectReference>
     <ProjectReference Include="..\RSUtilities\RSUtilities.csproj">
       <Project>{9241d02f-3c25-443c-8be9-2f72ade723ee}</Project>

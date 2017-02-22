@@ -1,6 +1,8 @@
 ﻿// Copyright (c) DotNetwork. All rights reserved.
 // Licensed under the MIT license. See LICENSE file for full license information.
 
+using System;
+
 namespace DotNetwork.Oldscape
 {
 
@@ -9,6 +11,11 @@ namespace DotNetwork.Oldscape
     /// </summary>
     sealed class Constants
     {
+
+        /// <summary>
+        /// The cache directory.
+        /// </summary>
+        public static readonly string CACHE_PATH = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Visual Studio 2015/Projects/DotNetwork/Cache/";
         /// <summary>
         /// The server address ip.
         /// </summary>
@@ -18,5 +25,11 @@ namespace DotNetwork.Oldscape
         /// The server port.
         /// </summary>
         public const int SERVER_PORT = 43594;
+
+        /// <summary>
+        /// The unique gamepack token.
+        /// </summary>
+        public const string GAMEPACK_TOKEN = "ElZAIrq5NpKN6D3mDdihco3oPeYN2KFy2DCquj7JMmECPmLrDP3Bnw";
+
     }
 }

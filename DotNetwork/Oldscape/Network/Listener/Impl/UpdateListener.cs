@@ -4,7 +4,7 @@
 using DotNetty.Transport.Channels;
 using DotNetwork.Oldscape.Network.Protocol.Codec.Update;
 using DotNetty.Buffers;
-using DotNetwork.Oldscape.Network.Protocol.CacheStore;
+using DotNetwork.Oldscape.Network.Protocol.CacheFS;
 
 namespace DotNetwork.Oldscape.Network.Listener.Impl
 {
@@ -30,9 +30,7 @@ namespace DotNetwork.Oldscape.Network.Listener.Impl
 
                 //Get the cache data based on the requested index and archive.
                 if (index == 0xff && archive == 0xff)
-                {
                     container = Unpooled.CopiedBuffer(CacheManager.GetChecksumBuffer());
-                }
                 else
                 {
                     container = Unpooled.CopiedBuffer(CacheManager.GetCache().GetStore().Read(index, archive).array());

@@ -4,7 +4,7 @@
 using OpenRSS.Cache;
 using System;
 
-namespace DotNetwork.Oldscape.Network.Protocol.CacheStore
+namespace DotNetwork.Oldscape.Network.Protocol.CacheFS
 {
 
     /// <summary>
@@ -33,10 +33,11 @@ namespace DotNetwork.Oldscape.Network.Protocol.CacheStore
         /// </summary>
         public static void Load()
         {
-            cache = new Cache(FileStore.Open(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/cache/"));
+            cache = new Cache(FileStore.Open(Constants.CACHE_PATH));
             checksumTable = cache.CreateChecksumTable();
             checksumBuffer = new Container(Container.COMPRESSION_NONE, checksumTable.Encode()).Encode().array();
             Console.WriteLine("Loaded " + cache.GetTypeCount() + " cache indexes.");
+            cache.GetStore().Dispose();
         }
 
         /// <summary>
