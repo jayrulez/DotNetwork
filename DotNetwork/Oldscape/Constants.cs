@@ -15,7 +15,7 @@ namespace DotNetwork.Oldscape
         /// <summary>
         /// The cache directory.
         /// </summary>
-        public static readonly string CACHE_PATH = Environment.SpecialFolder.MyDocuments + "/Visual Studio 2015/Projects/DotNetwork/Cache/";
+        public static readonly string CACHE_PATH = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Visual Studio 2015/Projects/DotNetwork/Cache/";
         /// <summary>
         /// The server address ip.
         /// </summary>
@@ -25,6 +25,11 @@ namespace DotNetwork.Oldscape
         /// The server port.
         /// </summary>
         public const int SERVER_PORT = 43594;
+
+        /// <summary>
+        /// The unique gamepack token.
+        /// </summary>
+        public const string GAMEPACK_TOKEN = "ElZAIrq5NpKN6D3mDdihco3oPeYN2KFy2DCquj7JMmECPmLrDP3Bnw";
 
     }
 }

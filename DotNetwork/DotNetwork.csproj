@@ -37,6 +37,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -166,6 +167,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Oldscape\Constants.cs" />
+    <Compile Include="Oldscape\Game\Model\Entity\Actor\Player\Info\MachineInformation.cs" />
+    <Compile Include="Oldscape\Network\Listener\Impl\LoginListener.cs" />
     <Compile Include="Oldscape\Network\Listener\Impl\UpdateListener.cs" />
     <Compile Include="Oldscape\Network\Protocol\CacheFS\CacheManager.cs" />
     <Compile Include="Oldscape\Network\Protocol\Codec\Handshake\HandshakeRequest.cs" />
@@ -190,6 +193,7 @@
     <Compile Include="Oldscape\Network\Protocol\ConnectionMessage.cs" />
     <Compile Include="Oldscape\Server.cs" />
     <Compile Include="Oldscape\Util\Buf\IByteBufferExtensions.cs" />
+    <Compile Include="Oldscape\Util\Isaac\IsaacRandGroup.cs" />
     <Compile Include="Oldscape\Util\Utilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -201,6 +205,10 @@
     <ProjectReference Include="..\OpenRSS\OpenRSS.csproj">
       <Project>{afa0d36f-f8c5-4897-8d36-11d155d3e144}</Project>
       <Name>OpenRSS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rand\Rand.csproj">
+      <Project>{7c8cbc34-7269-475f-9d7c-562d7fbd6650}</Project>
+      <Name>Rand</Name>
     </ProjectReference>
     <ProjectReference Include="..\RSUtilities\RSUtilities.csproj">
       <Project>{9241d02f-3c25-443c-8be9-2f72ade723ee}</Project>

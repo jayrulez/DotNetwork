@@ -24,7 +24,7 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Update
         {
             int index = message.GetIndex();
             int archive = message.GetArchive();
-            IByteBuffer container = message.GetContainer();
+            var container = message.GetContainer();
 
             int compression = container.ReadByte();
             int length = container.ReadInt();

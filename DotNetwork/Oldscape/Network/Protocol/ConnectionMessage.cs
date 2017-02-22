@@ -14,8 +14,6 @@ namespace DotNetwork.Oldscape.Network.Protocol
         /// </summary>
         SUCCESSFUL = 0,
 
-
-
         /// <summary>
         /// The client is out of date with the server.
         /// </summary>

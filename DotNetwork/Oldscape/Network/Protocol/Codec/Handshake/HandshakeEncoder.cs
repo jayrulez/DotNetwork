@@ -6,7 +6,6 @@ using DotNetty.Buffers;
 using DotNetty.Transport.Channels;
 using DotNetwork.Oldscape.Network.Protocol.Codec.Update;
 using DotNetwork.Oldscape.Network.Listener.Impl;
-using System;
 using DotNetwork.Oldscape.Network.Protocol.Codec.Login;
 
 namespace DotNetwork.Oldscape.Network.Protocol.Codec.Handshake
@@ -26,7 +25,7 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Handshake
         /// <param name="output"></param>
         protected override void Encode(IChannelHandlerContext context, HandshakeResponse message, IByteBuffer output)
         {
-            ConnectionMessage response = message.GetConnectionMessage();
+            var response = message.GetConnectionMessage();
             var pipeline = context.Channel.Pipeline;
 
             output.WriteByte((int)response);
@@ -40,6 +39,7 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Handshake
                         pipeline.Replace("decoder", "update.decoder", new UpdateDecoder());
                         break;
                     case HandshakeType.LOGIN_CONNECTION:
+                        context.Channel.GetAttribute(NetworkHandler.CURR_LISTENER).Set(new LoginListener());
                         pipeline.AddAfter("decoder", "login.encoder", new LoginEncoder());
                         pipeline.Replace("decoder", "login.decoder", new LoginDecoder());
                         break;

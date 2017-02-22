@@ -23,7 +23,7 @@ namespace DotNetwork.Oldscape
         /// Starts the server.
         /// </summary>
         /// <param name="args"></param>
-        public static void Main(string[] args)
+        public static void Main()
         {
             Console.WriteLine("Welcome to DotNetwork.");
             Console.WriteLine("A fast and lightweight C# emulation g1ame network for the RuneTek engine.");
@@ -34,7 +34,6 @@ namespace DotNetwork.Oldscape
             Console.WriteLine("Starting the network...");
             NetworkBootstrap.StartNetwork();
 
-            GC.Collect();
             Console.WriteLine("Online!");
 
             //To keep the server from closing.

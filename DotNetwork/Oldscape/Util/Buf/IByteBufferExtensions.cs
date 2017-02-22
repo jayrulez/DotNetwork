@@ -79,5 +79,20 @@ namespace DotNetwork.Oldscape.Util.Buf
             return buffer;
         }
 
+        /// <summary>
+        /// Converts byte data from a byte buffer into a readable 'jagex' string.
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <returns></returns>
+        public static string ReadJagString(IByteBuffer buffer)
+        {
+            var builder = new StringBuilder();
+            byte a;
+            buffer.ReadByte();
+            while (buffer.IsReadable() && (a = buffer.ReadByte()) != STRING_TERMINATOR)
+                builder.Append((char)a);
+            return builder.ToString();
+        }
+
     }
 }
