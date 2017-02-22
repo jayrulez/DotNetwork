@@ -23,6 +23,7 @@ $RECYCLE.BIN/
 *.user
 /DotNetwork/App.config
 /Cache
+*.vs
 
 # Windows shortcuts
 *.lnk
