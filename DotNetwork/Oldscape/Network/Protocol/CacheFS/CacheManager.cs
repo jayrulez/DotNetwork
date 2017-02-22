@@ -4,7 +4,7 @@
 using OpenRSS.Cache;
 using System;
 
-namespace DotNetwork.Oldscape.Network.Protocol.CacheStore
+namespace DotNetwork.Oldscape.Network.Protocol.CacheFS
 {
 
     /// <summary>

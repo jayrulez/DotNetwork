@@ -5,6 +5,7 @@ using DotNetty.Codecs;
 using System.Collections.Generic;
 using DotNetty.Buffers;
 using DotNetty.Transport.Channels;
+using System;
 
 namespace DotNetwork.Oldscape.Network.Protocol.Codec.Handshake
 {
@@ -37,6 +38,7 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Handshake
                     output.Add(new HandshakeRequest(type, version));
                     break;
                 case HandshakeType.LOGIN_CONNECTION:
+                    context.Channel.WriteAndFlushAsync(new HandshakeResponse(type, ConnectionMessage.SUCCESSFUL));
                     break;
             }
         }

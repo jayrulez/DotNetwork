@@ -12,7 +12,9 @@ namespace DotNetwork.Oldscape.Network.Protocol
         /// <summary>
         /// A successful client connection between the server and client.
         /// </summary>
-        UP_TO_DATE = 0,
+        SUCCESSFUL = 0,
+
+
 
         /// <summary>
         /// The client is out of date with the server.

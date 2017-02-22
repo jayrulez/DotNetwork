@@ -30,7 +30,7 @@ namespace DotNetwork.Oldscape.Network.Listener.Impl
                 {
                     case HandshakeType.UPDATE_CONNECTION:
                         if (request.GetVersion() == Server.VERSION)
-                            response = ConnectionMessage.UP_TO_DATE;
+                            response = ConnectionMessage.SUCCESSFUL;
                         break;
                     case HandshakeType.LOGIN_CONNECTION:
                         //TODO Login

@@ -126,7 +126,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Http, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Net.Http.4.3.0\lib\net46\System.Net.Http.dll</HintPath>
+      <HintPath>..\packages\System.Net.Http.4.3.1\lib\net46\System.Net.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Net.Sockets, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -167,7 +167,7 @@
   <ItemGroup>
     <Compile Include="Oldscape\Constants.cs" />
     <Compile Include="Oldscape\Network\Listener\Impl\UpdateListener.cs" />
-    <Compile Include="Oldscape\Network\Protocol\CacheStore\CacheManager.cs" />
+    <Compile Include="Oldscape\Network\Protocol\CacheFS\CacheManager.cs" />
     <Compile Include="Oldscape\Network\Protocol\Codec\Handshake\HandshakeRequest.cs" />
     <Compile Include="Oldscape\Network\Listener\Impl\HandshakeListener.cs" />
     <Compile Include="Oldscape\Network\Listener\NetworkListener.cs" />
@@ -177,6 +177,11 @@
     <Compile Include="Oldscape\Network\Protocol\Codec\Handshake\HandshakeDecoder.cs" />
     <Compile Include="Oldscape\Network\Protocol\Codec\Handshake\HandshakeEncoder.cs" />
     <Compile Include="Oldscape\Network\Protocol\Codec\Handshake\HandshakeResponse.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Codec\Login\Login.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Codec\Login\LoginDecoder.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Codec\Login\LoginEncoder.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Codec\Login\LoginRequest.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Codec\Login\LoginResponse.cs" />
     <Compile Include="Oldscape\Network\Protocol\Codec\Update\Update.cs" />
     <Compile Include="Oldscape\Network\Protocol\Codec\Update\UpdateDecoder.cs" />
     <Compile Include="Oldscape\Network\Protocol\Codec\Update\UpdateEncoder.cs" />
@@ -184,6 +189,8 @@
     <Compile Include="Oldscape\Network\Protocol\Codec\Update\UpdateResponse.cs" />
     <Compile Include="Oldscape\Network\Protocol\ConnectionMessage.cs" />
     <Compile Include="Oldscape\Server.cs" />
+    <Compile Include="Oldscape\Util\Buf\IByteBufferExtensions.cs" />
+    <Compile Include="Oldscape\Util\Utilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

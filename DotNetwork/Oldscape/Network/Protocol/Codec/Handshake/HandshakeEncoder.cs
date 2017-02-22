@@ -6,6 +6,8 @@ using DotNetty.Buffers;
 using DotNetty.Transport.Channels;
 using DotNetwork.Oldscape.Network.Protocol.Codec.Update;
 using DotNetwork.Oldscape.Network.Listener.Impl;
+using System;
+using DotNetwork.Oldscape.Network.Protocol.Codec.Login;
 
 namespace DotNetwork.Oldscape.Network.Protocol.Codec.Handshake
 {
@@ -25,21 +27,25 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Handshake
         protected override void Encode(IChannelHandlerContext context, HandshakeResponse message, IByteBuffer output)
         {
             ConnectionMessage response = message.GetConnectionMessage();
+            var pipeline = context.Channel.Pipeline;
 
             output.WriteByte((int)response);
-            if (response == ConnectionMessage.UP_TO_DATE)//TODO Fix for login
+            if (response == ConnectionMessage.SUCCESSFUL)
             {
                 switch (message.GetHandshakeType())
                 {
                     case HandshakeType.UPDATE_CONNECTION:
                         context.Channel.GetAttribute(NetworkHandler.CURR_LISTENER).Set(new UpdateListener());
-                        context.Channel.Pipeline.AddAfter("decoder", "update.encoder", new UpdateEncoder());
-                        context.Channel.Pipeline.Replace("decoder", "update.decoder", new UpdateDecoder());
+                        pipeline.AddAfter("decoder", "update.encoder", new UpdateEncoder());
+                        pipeline.Replace("decoder", "update.decoder", new UpdateDecoder());
                         break;
                     case HandshakeType.LOGIN_CONNECTION:
+                        pipeline.AddAfter("decoder", "login.encoder", new LoginEncoder());
+                        pipeline.Replace("decoder", "login.decoder", new LoginDecoder());
                         break;
                 }
             }
+            pipeline.Remove(this);
         }
     }
 }

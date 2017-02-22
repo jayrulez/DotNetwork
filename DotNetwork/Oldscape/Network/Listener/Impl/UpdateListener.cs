@@ -4,7 +4,7 @@
 using DotNetty.Transport.Channels;
 using DotNetwork.Oldscape.Network.Protocol.Codec.Update;
 using DotNetty.Buffers;
-using DotNetwork.Oldscape.Network.Protocol.CacheStore;
+using DotNetwork.Oldscape.Network.Protocol.CacheFS;
 
 namespace DotNetwork.Oldscape.Network.Listener.Impl
 {
