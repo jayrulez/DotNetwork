@@ -60,7 +60,7 @@ namespace DotNetwork.Oldscape.Network.Protocol.Packet.Encoder
         /// </summary>
         /// <param name="player"></param>
         /// <param name="context"></param>
-        public abstract void encode(Player player, T context);
+        public abstract void Encode(Player player, T context);
 
         /// <summary>
         /// Gets the packet id.
