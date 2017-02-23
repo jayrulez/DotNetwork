@@ -27,5 +27,6 @@ namespace DotNetwork.Oldscape.Network.Protocol.Packet.Encoder.Impl
         {
             builder.Put(DataType.SHORT, DataOrder.LITTLE, context.GetId());
         }
+
     }
 }
