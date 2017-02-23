@@ -168,6 +168,7 @@
   <ItemGroup>
     <Compile Include="Oldscape\Constants.cs" />
     <Compile Include="Oldscape\Game\Model\Entity\Actor\Player\Info\MachineInformation.cs" />
+    <Compile Include="Oldscape\Game\Model\Entity\Actor\Player\Player.cs" />
     <Compile Include="Oldscape\Network\Listener\Impl\LoginListener.cs" />
     <Compile Include="Oldscape\Network\Listener\Impl\UpdateListener.cs" />
     <Compile Include="Oldscape\Network\Protocol\CacheFS\CacheManager.cs" />
@@ -192,11 +193,16 @@
     <Compile Include="Oldscape\Network\Protocol\Codec\Update\UpdateResponse.cs" />
     <Compile Include="Oldscape\Network\Protocol\ConnectionMessage.cs" />
     <Compile Include="Oldscape\Network\Protocol\Packet\AccessMode.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\Context\Impl\RootInterfaceContext.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\Context\PacketContext.cs" />
     <Compile Include="Oldscape\Network\Protocol\Packet\DataConstants.cs" />
     <Compile Include="Oldscape\Network\Protocol\Packet\DataOrder.cs" />
     <Compile Include="Oldscape\Network\Protocol\Packet\DataTransformation.cs" />
     <Compile Include="Oldscape\Network\Protocol\Packet\DataType.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\Encoder\PacketEncoder.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\Encoder\Impl\RootInterfaceEncoder.cs" />
     <Compile Include="Oldscape\Network\Protocol\Packet\PacketBuilder.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\PacketRepository.cs" />
     <Compile Include="Oldscape\Network\Protocol\Packet\PacketType.cs" />
     <Compile Include="Oldscape\Server.cs" />
     <Compile Include="Oldscape\Util\Buf\IByteBufferExtensions.cs" />

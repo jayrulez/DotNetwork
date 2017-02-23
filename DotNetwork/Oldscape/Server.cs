@@ -3,6 +3,8 @@
 
 using DotNetwork.Oldscape.Network;
 using DotNetwork.Oldscape.Network.Protocol.CacheFS;
+using DotNetwork.Oldscape.Network.Protocol.Packet;
+using DotNetwork.Oldscape.Network.Protocol.Packet.Context.Impl;
 using System;
 
 namespace DotNetwork.Oldscape
@@ -30,6 +32,8 @@ namespace DotNetwork.Oldscape
 
             Console.WriteLine("Loading the cache...");
             CacheManager.Load();
+
+            Console.WriteLine($"Registered {PacketRepository.PACKET_ENCODERS.Count} packet encoder(s).");
 
             Console.WriteLine("Starting the network...");
             NetworkBootstrap.StartNetwork();

@@ -36,7 +36,7 @@ namespace DotNetwork.Oldscape.Network.Protocol.CacheFS
             cache = new Cache(FileStore.Open(Constants.CACHE_PATH));
             checksumTable = cache.CreateChecksumTable();
             checksumBuffer = new Container(Container.COMPRESSION_NONE, checksumTable.Encode()).Encode().array();
-            Console.WriteLine("Loaded " + cache.GetTypeCount() + " cache indexes.");
+            Console.WriteLine($"Loaded {cache.GetTypeCount()} cache indexes.");
         }
 
         /// <summary>
