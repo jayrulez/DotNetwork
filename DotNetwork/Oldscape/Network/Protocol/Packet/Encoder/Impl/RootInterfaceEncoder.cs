@@ -8,7 +8,7 @@ namespace DotNetwork.Oldscape.Network.Protocol.Packet.Encoder.Impl
 {
 
     /// <summary>
-    /// THe root interface packet encoder.
+    /// The root interface packet encoder.
     /// </summary>
     sealed class RootInterfaceEncoder : PacketEncoder<RootInterfaceContext>
     {
