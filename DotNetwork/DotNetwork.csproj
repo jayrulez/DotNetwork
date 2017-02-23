@@ -167,10 +167,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Oldscape\Constants.cs" />
+    <Compile Include="Oldscape\Game\Model\Entity\Actor\Actor.cs" />
     <Compile Include="Oldscape\Game\Model\Entity\Actor\Player\Info\MachineInformation.cs" />
+    <Compile Include="Oldscape\Game\Model\Entity\Actor\Player\Player.cs" />
+    <Compile Include="Oldscape\Game\Model\Entity\Entity.cs" />
+    <Compile Include="Oldscape\Game\World\Region\Position.cs" />
+    <Compile Include="Oldscape\Game\World\GameWorld.cs" />
+    <Compile Include="Oldscape\Network\Listener\Impl\GamePacketListener.cs" />
     <Compile Include="Oldscape\Network\Listener\Impl\LoginListener.cs" />
     <Compile Include="Oldscape\Network\Listener\Impl\UpdateListener.cs" />
     <Compile Include="Oldscape\Network\Protocol\CacheFS\CacheManager.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Codec\Game\GamePacketDecoder.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Codec\Game\GamePacketEncoder.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Codec\Game\GamePacketRequest.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Codec\Game\GamePacketResponse.cs" />
     <Compile Include="Oldscape\Network\Protocol\Codec\Handshake\HandshakeRequest.cs" />
     <Compile Include="Oldscape\Network\Listener\Impl\HandshakeListener.cs" />
     <Compile Include="Oldscape\Network\Listener\NetworkListener.cs" />
@@ -191,6 +201,20 @@
     <Compile Include="Oldscape\Network\Protocol\Codec\Update\UpdateRequest.cs" />
     <Compile Include="Oldscape\Network\Protocol\Codec\Update\UpdateResponse.cs" />
     <Compile Include="Oldscape\Network\Protocol\ConnectionMessage.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\AccessMode.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\Context\Impl\RootInterfaceContext.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\Context\Impl\StaticRegionContext.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\Context\PacketContext.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\DataConstants.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\DataOrder.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\DataTransformation.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\DataType.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\Encoder\Impl\StaticRegionEncoder.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\Encoder\PacketEncoder.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\Encoder\Impl\RootInterfaceEncoder.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\PacketBuilder.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\PacketRepository.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\PacketType.cs" />
     <Compile Include="Oldscape\Server.cs" />
     <Compile Include="Oldscape\Util\Buf\IByteBufferExtensions.cs" />
     <Compile Include="Oldscape\Util\Isaac\IsaacRandGroup.cs" />

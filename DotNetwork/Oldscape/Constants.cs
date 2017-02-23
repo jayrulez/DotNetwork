@@ -13,9 +13,15 @@ namespace DotNetwork.Oldscape
     {
 
         /// <summary>
+        /// The base namespace packaging presentation.
+        /// </summary>
+        public const string NAMESPACE_PRESENTATION = "DotNetwork.Oldscape";
+
+        /// <summary>
         /// The cache directory.
         /// </summary>
         public static readonly string CACHE_PATH = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Visual Studio 2015/Projects/DotNetwork/Cache/";
+
         /// <summary>
         /// The server address ip.
         /// </summary>
@@ -30,6 +36,11 @@ namespace DotNetwork.Oldscape
         /// The unique gamepack token.
         /// </summary>
         public const string GAMEPACK_TOKEN = "ElZAIrq5NpKN6D3mDdihco3oPeYN2KFy2DCquj7JMmECPmLrDP3Bnw";
+
+        /// <summary>
+        /// The maximum number of players allowed inside the game world.
+        /// </summary>
+        public const int MAX_PLAYERS = 2048;
 
     }
 }

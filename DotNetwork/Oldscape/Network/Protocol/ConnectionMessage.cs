@@ -15,6 +15,11 @@ namespace DotNetwork.Oldscape.Network.Protocol
         SUCCESSFUL = 0,
 
         /// <summary>
+        /// A successful login between the server and client.
+        /// </summary>
+        SUCCESSFUL_LOGIN = 2,
+
+        /// <summary>
         /// The client is out of date with the server.
         /// </summary>
         OUT_OF_DATE = 6

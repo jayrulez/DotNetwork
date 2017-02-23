@@ -3,6 +3,7 @@
 
 using DotNetwork.Oldscape.Network;
 using DotNetwork.Oldscape.Network.Protocol.CacheFS;
+using DotNetwork.Oldscape.Network.Protocol.Packet;
 using System;
 
 namespace DotNetwork.Oldscape
@@ -17,7 +18,7 @@ namespace DotNetwork.Oldscape
         /// <summary>
         /// The version of the server.
         /// </summary>
-        public const int VERSION = 103;
+        public const int VERSION = 83;
 
         /// <summary>
         /// Starts the server.
@@ -26,10 +27,12 @@ namespace DotNetwork.Oldscape
         public static void Main()
         {
             Console.WriteLine("Welcome to DotNetwork.");
-            Console.WriteLine("A fast and lightweight C# emulation g1ame network for the RuneTek engine.");
+            Console.WriteLine("A fast and lightweight C# emulation game network for the RuneTek engine.");
 
             Console.WriteLine("Loading the cache...");
             CacheManager.Load();
+
+            Console.WriteLine($"Registered {PacketRepository.PACKET_ENCODERS.Count} packet encoder(s).");
 
             Console.WriteLine("Starting the network...");
             NetworkBootstrap.StartNetwork();

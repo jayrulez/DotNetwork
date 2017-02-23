@@ -19,7 +19,7 @@ namespace DotNetwork.Oldscape.Network.Listener.Impl
         /// </summary>
         /// <param name="context"></param>
         /// <param name="message"></param>
-        public override void MessageRead(IChannelHandlerContext context, object message)
+        public void MessageRead(IChannelHandlerContext context, object message)
         {
             if (message.GetType() == typeof(UpdateRequest))
             {
@@ -39,7 +39,7 @@ namespace DotNetwork.Oldscape.Network.Listener.Impl
                 }
 
                 if (container != null)
-                    WriteAndFlushAsync(context, new UpdateResponse(index, archive, request.IsPriority(), container));
+                    context.Channel.WriteAndFlushAsync(new UpdateResponse(index, archive, request.IsPriority(), container));
             }
         }
     }

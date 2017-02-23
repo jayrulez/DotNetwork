@@ -6,6 +6,9 @@ using DotNetty.Transport.Channels;
 using DotNetwork.Oldscape.Network.Protocol.Codec.Login;
 using DotNetwork.Oldscape.Network.Protocol;
 using DotNetwork.Oldscape.Network.Protocol.CacheFS;
+using DotNetty.Buffers;
+using DotNetwork.Oldscape.Network.Protocol.Codec.Game;
+using DotNetwork.Oldscape.Game.Model.Entity.Actor.Player;
 
 namespace DotNetwork.Oldscape.Network.Listener.Impl
 {
@@ -21,13 +24,30 @@ namespace DotNetwork.Oldscape.Network.Listener.Impl
         /// </summary>
         /// <param name="context"></param>
         /// <param name="message"></param>
-        public override void MessageRead(IChannelHandlerContext context, object message)
+        public void MessageRead(IChannelHandlerContext context, object message)
         {
             if (message.GetType() == typeof(LoginRequest))
             {
                 var request = (LoginRequest)message;
                 var response = checkLogin(request);
-                Console.WriteLine(response);
+                var channel = context.Channel;
+                var pipeline = channel.Pipeline;
+
+
+                if (response != ConnectionMessage.SUCCESSFUL_LOGIN)
+                {
+                    channel.WriteAndFlushAsync(Unpooled.Buffer(1).WriteByte((int)response));
+                    return;
+                }
+
+                var player = new Player(channel);
+                channel.WriteAndFlushAsync(new LoginResponse(response));
+
+                channel.GetAttribute(NetworkHandler.CURR_LISTENER).Set(new GamePacketListener());
+                pipeline.AddAfter("login.decoder", "game.encoder", new GamePacketEncoder(request.GetIsaacRandGroup().GetEncoderRand()));
+                pipeline.AddAfter("login.decoder", "game.decoder", new GamePacketDecoder());
+
+                player.Start();
             }
         }
 
@@ -48,7 +68,7 @@ namespace DotNetwork.Oldscape.Network.Listener.Impl
                 }
             }
 
-            return ConnectionMessage.SUCCESSFUL;
+            return ConnectionMessage.SUCCESSFUL_LOGIN;
         }
     }
 }

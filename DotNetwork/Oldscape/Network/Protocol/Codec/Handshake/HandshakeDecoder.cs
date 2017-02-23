@@ -35,7 +35,7 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Handshake
             {
                 case HandshakeType.UPDATE_CONNECTION:
                     int version = input.ReadInt();
-                    output.Add(new HandshakeRequest(type, version));
+                    output.Add(new HandshakeRequest(version));
                     break;
                 case HandshakeType.LOGIN_CONNECTION:
                     context.Channel.WriteAndFlushAsync(new HandshakeResponse(type, ConnectionMessage.SUCCESSFUL));
