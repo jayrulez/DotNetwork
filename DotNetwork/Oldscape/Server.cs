@@ -4,7 +4,6 @@
 using DotNetwork.Oldscape.Network;
 using DotNetwork.Oldscape.Network.Protocol.CacheFS;
 using DotNetwork.Oldscape.Network.Protocol.Packet;
-using DotNetwork.Oldscape.Network.Protocol.Packet.Context.Impl;
 using System;
 
 namespace DotNetwork.Oldscape

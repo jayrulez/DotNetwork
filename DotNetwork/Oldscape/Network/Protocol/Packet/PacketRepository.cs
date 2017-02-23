@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using DotNetwork.Oldscape.Network.Protocol.Packet.Encoder;
 
 namespace DotNetwork.Oldscape.Network.Protocol.Packet
 {

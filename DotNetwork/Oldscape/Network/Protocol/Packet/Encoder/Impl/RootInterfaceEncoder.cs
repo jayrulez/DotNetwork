@@ -16,16 +16,15 @@ namespace DotNetwork.Oldscape.Network.Protocol.Packet.Encoder.Impl
         /// <summary>
         /// Constructs a new object.
         /// </summary>
-        public RootInterfaceEncoder() : base(208, PacketType.FIXED) { }
+        public RootInterfaceEncoder() : base(108, PacketType.FIXED) { }
 
         /// <summary>
         /// Encodes the packet.
         /// </summary>
-        /// <param name="player"></param>
         /// <param name="context"></param>
-        public override void Encode(Player player, RootInterfaceContext context)
+        public override void Encode(RootInterfaceContext context)
         {
-            builder.Put(DataType.SHORT, DataOrder.LITTLE, context.GetId());
+            builder.Put(DataType.SHORT, DataOrder.LITTLE, DataTransformation.ADD, context.GetId());
         }
 
     }

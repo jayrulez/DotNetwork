@@ -3,6 +3,7 @@
 
 using DotNetty.Transport.Channels;
 using DotNetwork.Oldscape.Game.World.Region;
+using DotNetwork.Oldscape.Network.Listener.Impl;
 using DotNetwork.Oldscape.Network.Protocol.Packet.Context;
 using DotNetwork.Oldscape.Network.Protocol.Packet.Context.Impl;
 
@@ -21,18 +22,12 @@ namespace DotNetwork.Oldscape.Game.Model.Entity.Actor.Player
         private readonly IChannel channel;
 
         /// <summary>
-        /// The viewport.
-        /// </summary>
-        private readonly Viewport viewport;
-
-        /// <summary>
         /// Constructs a new object.
         /// </summary>
         /// <param name="channel"></param>
         public Player(IChannel channel)
         {
             this.channel = channel;
-            viewport = new Viewport(this);
         }
 
         /// <summary>
@@ -40,12 +35,19 @@ namespace DotNetwork.Oldscape.Game.Model.Entity.Actor.Player
         /// </summary>
         public void Start()
         {
+            SendPacket(new StaticRegionContext(Position));
             SendPacket(new RootInterfaceContext(548));
         }
 
-        public void SendPacket(PacketContext context)
+        /// <summary>
+        /// Sends a packet.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="context"></param>
+        public void SendPacket<T>(T context) where T : PacketContext
         {
-
+            if (channel.Registered)
+                GamePacketListener.SendGamePacket(this, context);
         }
 
         /// <summary>
@@ -55,15 +57,6 @@ namespace DotNetwork.Oldscape.Game.Model.Entity.Actor.Player
         public IChannel GetChannel()
         {
             return channel;
-        }
-
-        /// <summary>
-        /// Gets the viewport.
-        /// </summary>
-        /// <returns></returns>
-        public Viewport GetViewport()
-        {
-            return viewport;
         }
 
     }

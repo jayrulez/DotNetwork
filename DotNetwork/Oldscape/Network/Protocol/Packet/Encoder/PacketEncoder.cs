@@ -58,9 +58,8 @@ namespace DotNetwork.Oldscape.Network.Protocol.Packet.Encoder
         /// <summary>
         /// Encodes a implemented packet.
         /// </summary>
-        /// <param name="player"></param>
         /// <param name="context"></param>
-        public abstract void Encode(Player player, T context);
+        public abstract void Encode(T context);
 
         /// <summary>
         /// Gets the packet id.

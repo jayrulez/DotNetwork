@@ -114,7 +114,7 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Login
         /// Gets the isaac engine group.
         /// </summary>
         /// <returns></returns>
-        public IsaacRandGroup GetIsaacEngineGroup()
+        public IsaacRandGroup GetIsaacRandGroup()
         {
             return isaacGroup;
         }

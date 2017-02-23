@@ -7,6 +7,8 @@ using DotNetwork.Oldscape.Network.Protocol.Codec.Login;
 using DotNetwork.Oldscape.Network.Protocol;
 using DotNetwork.Oldscape.Network.Protocol.CacheFS;
 using DotNetty.Buffers;
+using DotNetwork.Oldscape.Network.Protocol.Codec.Game;
+using DotNetwork.Oldscape.Game.Model.Entity.Actor.Player;
 
 namespace DotNetwork.Oldscape.Network.Listener.Impl
 {
@@ -28,14 +30,24 @@ namespace DotNetwork.Oldscape.Network.Listener.Impl
             {
                 var request = (LoginRequest)message;
                 var response = checkLogin(request);
-                
+                var channel = context.Channel;
+                var pipeline = channel.Pipeline;
+
+
                 if (response != ConnectionMessage.SUCCESSFUL_LOGIN)
                 {
-                    context.Channel.WriteAndFlushAsync(Unpooled.Buffer(1).WriteByte((int)response));
+                    channel.WriteAndFlushAsync(Unpooled.Buffer(1).WriteByte((int)response));
                     return;
                 }
 
-                context.Channel.WriteAndFlushAsync(new LoginResponse(response));
+                var player = new Player(channel);
+                channel.WriteAndFlushAsync(new LoginResponse(response));
+
+                channel.GetAttribute(NetworkHandler.CURR_LISTENER).Set(new GamePacketListener());
+                pipeline.AddAfter("login.decoder", "game.encoder", new GamePacketEncoder(request.GetIsaacRandGroup().GetEncoderRand()));
+                pipeline.AddAfter("login.decoder", "game.decoder", new GamePacketDecoder());
+
+                player.Start();
             }
         }
 

@@ -45,12 +45,57 @@ namespace DotNetwork.Oldscape.Game.World.Region
         }
 
         /// <summary>
-        /// Gets the unique hash of the current position.
+        /// Gets the local x coordinate.
         /// </summary>
         /// <returns></returns>
-        public int GetPositionHash()
+        public int GetLocalX()
         {
-            return y + (x << 14) + (height << 28);
+            return (x - GetTopLeftSectorX() * 8);
+        }
+
+        /// <summary>
+        /// Gets the local y coordinate.
+        /// </summary>
+        /// <returns></returns>
+        public int GetLocalY()
+        {
+            return (y - GetTopLeftSectorY() * 8);
+        }
+
+        /// <summary>
+        /// Gets the top left sector x coordinate.
+        /// </summary>
+        /// <returns></returns>
+        public int GetTopLeftSectorX()
+        {
+            return (x / 8 - 6);
+        }
+
+        /// <summary>
+        /// Gets the top left sector y coordinate.
+        /// </summary>
+        /// <returns></returns>
+        public int GetTopLeftSectorY()
+        {
+            return (y / 8 - 6);
+        }
+
+        /// <summary>
+        /// Gets the central sector x coordinate.
+        /// </summary>
+        /// <returns></returns>
+        public int GetCentralSectorX()
+        {
+            return (x / 8);
+        }
+
+        /// <summary>
+        /// Gets the central sector y coordinate.
+        /// </summary>
+        /// <returns></returns>
+        public int GetCentralSectorY()
+        {
+            return (y / 8);
         }
 
         /// <summary>
