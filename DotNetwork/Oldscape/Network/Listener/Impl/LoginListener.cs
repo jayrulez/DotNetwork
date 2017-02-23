@@ -6,6 +6,7 @@ using DotNetty.Transport.Channels;
 using DotNetwork.Oldscape.Network.Protocol.Codec.Login;
 using DotNetwork.Oldscape.Network.Protocol;
 using DotNetwork.Oldscape.Network.Protocol.CacheFS;
+using DotNetty.Buffers;
 
 namespace DotNetwork.Oldscape.Network.Listener.Impl
 {
@@ -21,13 +22,20 @@ namespace DotNetwork.Oldscape.Network.Listener.Impl
         /// </summary>
         /// <param name="context"></param>
         /// <param name="message"></param>
-        public override void MessageRead(IChannelHandlerContext context, object message)
+        public void MessageRead(IChannelHandlerContext context, object message)
         {
             if (message.GetType() == typeof(LoginRequest))
             {
                 var request = (LoginRequest)message;
                 var response = checkLogin(request);
-                Console.WriteLine(response);
+                
+                if (response != ConnectionMessage.SUCCESSFUL_LOGIN)
+                {
+                    context.Channel.WriteAndFlushAsync(Unpooled.Buffer(1).WriteByte((int)response));
+                    return;
+                }
+
+                context.Channel.WriteAndFlushAsync(new LoginResponse(response));
             }
         }
 
@@ -48,7 +56,7 @@ namespace DotNetwork.Oldscape.Network.Listener.Impl
                 }
             }
 
-            return ConnectionMessage.SUCCESSFUL;
+            return ConnectionMessage.SUCCESSFUL_LOGIN;
         }
     }
 }

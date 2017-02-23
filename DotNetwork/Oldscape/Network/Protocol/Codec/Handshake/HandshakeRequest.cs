@@ -9,10 +9,6 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Handshake
     /// </summary>
     sealed class HandshakeRequest
     {
-        /// <summary>
-        /// The handshake type.
-        /// </summary>
-        private readonly HandshakeType type;
 
         /// <summary>
         /// The version of the client requesting handshake.
@@ -22,21 +18,10 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Handshake
         /// <summary>
         /// Constructs a new object.
         /// </summary>
-        /// <param name="type"></param>
         /// <param name="version"></param>
-        public HandshakeRequest(HandshakeType type, int version)
+        public HandshakeRequest(int version)
         {
-            this.type = type;
             this.version = version;
-        }
-
-        /// <summary>
-        /// Gets the handshake type.
-        /// </summary>
-        /// <returns></returns>
-        public HandshakeType GetHandshakeType()
-        {
-            return type;
         }
 
         /// <summary>

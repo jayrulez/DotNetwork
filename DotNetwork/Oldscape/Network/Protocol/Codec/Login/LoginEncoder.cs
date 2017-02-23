@@ -23,7 +23,21 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Login
         /// <param name="output"></param>
         protected override void Encode(IChannelHandlerContext context, LoginResponse message, IByteBuffer output)
         {
-            throw new NotImplementedException();
+            var response = message.GetResponse();
+
+            output.WriteByte((int)response);
+            if (response == ConnectionMessage.SUCCESSFUL_LOGIN)
+            {
+                output.WriteByte(0);
+                output.WriteByte(0);
+                output.WriteByte(0);
+                output.WriteByte(0);
+                output.WriteByte(0);
+                output.WriteByte(2);// rights
+                output.WriteByte(0);
+                output.WriteShort(1);// index
+                output.WriteByte(1);
+            }
         }
     }
 }

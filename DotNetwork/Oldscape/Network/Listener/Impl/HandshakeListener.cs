@@ -19,25 +19,17 @@ namespace DotNetwork.Oldscape.Network.Listener.Impl
         /// </summary>
         /// <param name="context"></param>
         /// <param name="message"></param>
-        public override void MessageRead(IChannelHandlerContext context, object message)
+        public void MessageRead(IChannelHandlerContext context, object message)
         {
             if (message.GetType() == typeof(HandshakeRequest))
             {
                 var request = (HandshakeRequest)message;
                 var response = ConnectionMessage.OUT_OF_DATE;
 
-                switch (request.GetHandshakeType())
-                {
-                    case HandshakeType.UPDATE_CONNECTION:
-                        if (request.GetVersion() == Server.VERSION)
-                            response = ConnectionMessage.SUCCESSFUL;
-                        break;
-                    case HandshakeType.LOGIN_CONNECTION:
-                        //TODO Login
-                        break;
-                }
+                if (request.GetVersion() == Server.VERSION)
+                    response = ConnectionMessage.SUCCESSFUL;
 
-                WriteAndFlushAsync(context, new HandshakeResponse(request.GetHandshakeType(), response));
+                context.Channel.WriteAndFlushAsync(new HandshakeResponse(HandshakeType.UPDATE_CONNECTION, response));
             }
         }
     }

@@ -191,6 +191,13 @@
     <Compile Include="Oldscape\Network\Protocol\Codec\Update\UpdateRequest.cs" />
     <Compile Include="Oldscape\Network\Protocol\Codec\Update\UpdateResponse.cs" />
     <Compile Include="Oldscape\Network\Protocol\ConnectionMessage.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\AccessMode.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\DataConstants.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\DataOrder.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\DataTransformation.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\DataType.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\PacketBuilder.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\PacketType.cs" />
     <Compile Include="Oldscape\Server.cs" />
     <Compile Include="Oldscape\Util\Buf\IByteBufferExtensions.cs" />
     <Compile Include="Oldscape\Util\Isaac\IsaacRandGroup.cs" />

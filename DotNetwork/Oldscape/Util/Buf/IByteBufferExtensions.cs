@@ -94,5 +94,17 @@ namespace DotNetwork.Oldscape.Util.Buf
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Writes a jag string into the buffer.
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="str"></param>
+        public static void WriteJagString(IByteBuffer buffer, string str)
+        {
+            buffer.WriteByte(0);
+            buffer.WriteBytes(Encoding.ASCII.GetBytes(str));
+            buffer.WriteByte(STRING_TERMINATOR);
+        }
+
     }
 }
