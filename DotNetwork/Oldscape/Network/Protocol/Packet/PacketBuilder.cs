@@ -95,7 +95,6 @@ namespace DotNetwork.Oldscape.Network.Protocol.Packet
         public void Put(DataType type, DataOrder order, DataTransformation transformation, long value)
         {
             CheckByteAccess();
-            long longValue = value;
             int length = (int)type;
             switch (order)
             {
@@ -105,16 +104,16 @@ namespace DotNetwork.Oldscape.Network.Protocol.Packet
                         if (index == 0 && transformation != DataTransformation.NONE)
                         {
                             if (transformation == DataTransformation.ADD)
-                                buffer.WriteByte((byte)(longValue + 128));
+                                buffer.WriteByte((byte)(value + 128));
                             else if (transformation == DataTransformation.NEGATE)
-                                buffer.WriteByte((byte)-longValue);
+                                buffer.WriteByte((byte)-value);
                             else if (transformation == DataTransformation.SUBTRACT)
-                                buffer.WriteByte((byte)(128 - longValue));
+                                buffer.WriteByte((byte)(128 - value));
                             else
                                 throw new Exception("Unknown transformation.");
                         }
                         else
-                            buffer.WriteByte((byte)(longValue >> index * 8));
+                            buffer.WriteByte((byte)(value >> index * 8));
                     }
                     break;
                 case DataOrder.INVERSED_MIDDLE:
@@ -124,10 +123,10 @@ namespace DotNetwork.Oldscape.Network.Protocol.Packet
                     if (type != DataType.INT)
                         throw new Exception("Inversed middle endian can only be used with an integer.");
 
-                    buffer.WriteByte((byte)(longValue >> 16));
-                    buffer.WriteByte((byte)(longValue >> 24));
-                    buffer.WriteByte((byte)longValue);
-                    buffer.WriteByte((byte)(longValue >> 8));
+                    buffer.WriteByte((byte)(value >> 16));
+                    buffer.WriteByte((byte)(value >> 24));
+                    buffer.WriteByte((byte)value);
+                    buffer.WriteByte((byte)(value >> 8));
                     break;
                 case DataOrder.LITTLE:
                     for (int index = 0; index < length; index++)
@@ -135,16 +134,16 @@ namespace DotNetwork.Oldscape.Network.Protocol.Packet
                         if (index == 0 && transformation != DataTransformation.NONE)
                         {
                             if (transformation == DataTransformation.ADD)
-                                buffer.WriteByte((byte)(longValue + 128));
+                                buffer.WriteByte((byte)(value + 128));
                             else if (transformation == DataTransformation.NEGATE)
-                                buffer.WriteByte((byte)-longValue);
+                                buffer.WriteByte((byte)-value);
                             else if (transformation == DataTransformation.SUBTRACT)
-                                buffer.WriteByte((byte)(128 - longValue));
+                                buffer.WriteByte((byte)(128 - value));
                             else
                                 throw new Exception("Unknown transformation.");
                         }
                         else
-                            buffer.WriteByte((byte)(longValue >> index * 8));
+                            buffer.WriteByte((byte)(value >> index * 8));
                     }
                     break;
                 case DataOrder.MIDDLE:
@@ -154,10 +153,10 @@ namespace DotNetwork.Oldscape.Network.Protocol.Packet
                     if (type != DataType.INT)
                         throw new Exception("Middle endian can only be used with an integer.");
 
-                    buffer.WriteByte((byte)(longValue >> 8));
-                    buffer.WriteByte((byte)longValue);
-                    buffer.WriteByte((byte)(longValue >> 24));
-                    buffer.WriteByte((byte)(longValue >> 16));
+                    buffer.WriteByte((byte)(value >> 8));
+                    buffer.WriteByte((byte)value);
+                    buffer.WriteByte((byte)(value >> 24));
+                    buffer.WriteByte((byte)(value >> 16));
                     break;
             }
         }

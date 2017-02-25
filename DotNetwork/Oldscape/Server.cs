@@ -33,6 +33,7 @@ namespace DotNetwork.Oldscape
             CacheManager.Load();
 
             Console.WriteLine($"Registered {PacketRepository.PACKET_ENCODERS.Count} packet encoder(s).");
+            Console.WriteLine($"Registered {PacketRepository.PACKET_DECODERS.Count} packet decoder(s).");
 
             Console.WriteLine("Starting the network...");
             NetworkBootstrap.StartNetwork();

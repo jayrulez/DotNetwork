@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using DotNetwork.Oldscape.Network.Protocol.Packet.Encoder;
+using DotNetwork.Oldscape.Network.Protocol.Packet.Decoder;
 
 namespace DotNetwork.Oldscape.Network.Protocol.Packet
 {
@@ -23,18 +24,54 @@ namespace DotNetwork.Oldscape.Network.Protocol.Packet
         public static readonly Dictionary<Type, object> PACKET_ENCODERS = ConstructEncoders();
 
         /// <summary>
+        /// A dictionary of packet decoders.
+        /// </summary>
+        public static readonly Dictionary<int[], PacketDecoder> PACKET_DECODERS = ConstructDecoders();
+
+        /// <summary>
         /// Constructs the packet encoders for the dictionary.
         /// </summary>
         /// <returns></returns>
-        public static Dictionary<Type, object> ConstructEncoders()
+        private static Dictionary<Type, object> ConstructEncoders()
         {
             Dictionary<Type, object> builder = new Dictionary<Type, object>();
-            Type[] classes = Assembly.GetExecutingAssembly().GetTypes().Where(a => a.Namespace == $"{Constants.NAMESPACE_PRESENTATION}.Network.Protocol.Packet.Encoder.Impl").ToArray();
-            foreach (Type encoder in classes)
+            try
             {
-                object @class = Activator.CreateInstance(encoder);
-                Type context = @class.GetType().BaseType.GetGenericArguments().FirstOrDefault();
-                builder.Add(context, @class);
+                Type[] classes = Assembly.GetExecutingAssembly().GetTypes().Where(a => a.Namespace == $"{Constants.NAMESPACE_PRESENTATION}.Network.Protocol.Packet.Encoder.Impl").ToArray();
+                foreach (Type encoder in classes)
+                {
+                    object @class = Activator.CreateInstance(encoder);
+                    Type context = @class.GetType().BaseType.GetGenericArguments().FirstOrDefault();
+                    builder.Add(context, @class);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+            }
+
+            return builder;
+        }
+
+        /// <summary>
+        /// Constructs the packet decpders for the dictionary.
+        /// </summary>
+        /// <returns></returns>
+        private static Dictionary<int[], PacketDecoder> ConstructDecoders()
+        {
+            Dictionary<int[], PacketDecoder> builder = new Dictionary<int[], PacketDecoder>();
+            try
+            {
+                Type[] classes = Assembly.GetExecutingAssembly().GetTypes().Where(a => a.Namespace == $"{Constants.NAMESPACE_PRESENTATION}.Network.Protocol.Packet.Decoder.Impl").ToArray();
+                foreach (Type decoder in classes)
+                {
+                    PacketDecoder @class = Activator.CreateInstance(decoder) as PacketDecoder;
+                    builder.Add(@class.GetPacketIds(), @class);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
             }
 
             return builder;
@@ -52,6 +89,16 @@ namespace DotNetwork.Oldscape.Network.Protocol.Packet
                 return encoder;
 
             return null;
+        }
+
+        /// <summary>
+        /// Gets a packet decoder for the incoming packet id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static PacketDecoder GetPacketDecoder(int id)
+        {
+            return PACKET_DECODERS.FirstOrDefault(kvp => kvp.Key.Any(i => i == id)).Value;
         }
 
     }

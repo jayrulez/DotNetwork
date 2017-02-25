@@ -20,4 +20,5 @@ namespace DotNetwork.Oldscape.Network.Listener
         void MessageRead(IChannelHandlerContext context, object message);
 
     }
+
 }

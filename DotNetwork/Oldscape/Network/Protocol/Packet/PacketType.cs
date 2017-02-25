@@ -24,6 +24,11 @@ namespace DotNetwork.Oldscape.Network.Protocol.Packet
     {
 
         /// <summary>
+        /// Unhandled.
+        /// </summary>
+        NONE,
+
+        /// <summary>
         /// A packet where the length is known by both the client and server already.
         /// </summary>
         FIXED,

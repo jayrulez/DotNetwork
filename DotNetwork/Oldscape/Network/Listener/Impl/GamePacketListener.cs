@@ -7,6 +7,7 @@ using DotNetwork.Oldscape.Network.Protocol.Packet.Context;
 using DotNetwork.Oldscape.Network.Protocol.Packet;
 using DotNetwork.Oldscape.Network.Protocol.Packet.Encoder;
 using DotNetwork.Oldscape.Network.Protocol.Codec.Game;
+using System;
 
 namespace DotNetwork.Oldscape.Network.Listener.Impl
 {
@@ -24,21 +25,35 @@ namespace DotNetwork.Oldscape.Network.Listener.Impl
         /// <param name="message"></param>
         public void MessageRead(IChannelHandlerContext context, object message)
         {
+            if (message.GetType() == typeof(GamePacketRequest))
+            {
+                var request = (GamePacketRequest)message;
+                int id = request.GetId();
+                var packet = PacketRepository.GetPacketDecoder(id);
 
+                //dont use preconditions because it doesnt need to throw some exception.
+                if (packet == null)
+                {
+                    Console.WriteLine($"Incoming packet not implemented: {id}.");
+                    return;
+                }
+
+                packet.Decode(request.GetPlayer(), id, new PacketReader(request.GetPayload()));
+            }
         }
 
         /// <summary>
         /// Sends a game packet to the client.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="player"></param>
+        /// <param name="channel"></param>
         /// <param name="context"></param>
-        public static void SendGamePacket<T>(Player player, T context) where T : PacketContext
+        public static void SendGamePacket<T>(IChannel channel, T context) where T : PacketContext
         {
-            PacketEncoder<T> packet = PacketRepository.GetPacketEncoder(context) as PacketEncoder<T>;
+            var packet = PacketRepository.GetPacketEncoder(context) as PacketEncoder<T>;
             Preconditions.Check.NotNull(packet, $"Packet not found for context {context.ToString()}").Encode(context);
 
-            player.GetChannel().WriteAndFlushAsync(new GamePacketResponse(packet.GetId(), packet.GetPacketType(), packet.GetBuilder()));
+            channel.WriteAndFlushAsync(new GamePacketResponse(packet.GetId(), packet.GetPacketType(), packet.GetBuilder()));
         }
 
     }

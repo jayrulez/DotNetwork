@@ -47,7 +47,7 @@ namespace DotNetwork.Oldscape.Game.Model.Entity.Actor.Player
         public void SendPacket<T>(T context) where T : PacketContext
         {
             if (channel.Registered)
-                GamePacketListener.SendGamePacket(this, context);
+                GamePacketListener.SendGamePacket(channel, context);
         }
 
         /// <summary>

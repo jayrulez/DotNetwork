@@ -6,6 +6,10 @@ using DotNetwork.Oldscape.Util.Isaac;
 
 namespace DotNetwork.Oldscape.Network.Protocol.Codec.Login
 {
+
+    /// <summary>
+    /// The login request.
+    /// </summary>
     sealed class LoginRequest
     {
 

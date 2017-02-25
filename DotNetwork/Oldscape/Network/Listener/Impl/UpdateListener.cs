@@ -14,6 +14,7 @@ namespace DotNetwork.Oldscape.Network.Listener.Impl
     /// </summary>
     sealed class UpdateListener : NetworkListener
     {
+
         /// <summary>
         /// Reads the inbound data.
         /// </summary>
@@ -40,6 +41,7 @@ namespace DotNetwork.Oldscape.Network.Listener.Impl
 
                 if (container != null)
                     context.Channel.WriteAndFlushAsync(new UpdateResponse(index, archive, request.IsPriority(), container));
+
             }
         }
     }

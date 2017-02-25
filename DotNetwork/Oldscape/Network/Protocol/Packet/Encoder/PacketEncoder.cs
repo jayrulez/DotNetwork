@@ -2,7 +2,6 @@
 // Licensed under the MIT license. See LICENSE file for full license information.
 
 using DotNetty.Buffers;
-using DotNetwork.Oldscape.Game.Model.Entity.Actor.Player;
 using DotNetwork.Oldscape.Network.Protocol.Packet.Context;
 
 namespace DotNetwork.Oldscape.Network.Protocol.Packet.Encoder

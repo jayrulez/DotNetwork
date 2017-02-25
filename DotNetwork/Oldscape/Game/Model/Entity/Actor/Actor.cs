@@ -2,7 +2,6 @@
 // Licensed under the MIT license. See LICENSE file for full license information.
 
 using DotNetwork.Oldscape.Game.World;
-using DotNetwork.Oldscape.Game.World.Region;
 
 namespace DotNetwork.Oldscape.Game.Model.Entity.Actor
 {
@@ -16,7 +15,6 @@ namespace DotNetwork.Oldscape.Game.Model.Entity.Actor
         /// <summary>
         /// Constructs a new object.
         /// </summary>
-        /// <param name="position"></param>
         public Actor() : base(GameWorld.DEFAULT_POSITION) { }
 
     }

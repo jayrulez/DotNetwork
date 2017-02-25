@@ -29,7 +29,7 @@ namespace DotNetwork.Oldscape.Network.Listener.Impl
             if (message.GetType() == typeof(LoginRequest))
             {
                 var request = (LoginRequest)message;
-                var response = checkLogin(request);
+                var response = CheckLogin(request);
                 var channel = context.Channel;
                 var pipeline = channel.Pipeline;
 
@@ -45,13 +45,18 @@ namespace DotNetwork.Oldscape.Network.Listener.Impl
 
                 channel.GetAttribute(NetworkHandler.CURR_LISTENER).Set(new GamePacketListener());
                 pipeline.AddAfter("login.decoder", "game.encoder", new GamePacketEncoder(request.GetIsaacRandGroup().GetEncoderRand()));
-                pipeline.AddAfter("login.decoder", "game.decoder", new GamePacketDecoder());
+                pipeline.Replace("login.decoder", "game.decoder", new GamePacketDecoder(player, request.GetIsaacRandGroup().GetDecoderRand()));
 
                 player.Start();
             }
         }
 
-        private ConnectionMessage checkLogin(LoginRequest request)
+        /// <summary>
+        /// Checks the login status before connecting the player to the game world.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        private ConnectionMessage CheckLogin(LoginRequest request)
         {
 
             if (request.GetVersion() != Server.VERSION)
