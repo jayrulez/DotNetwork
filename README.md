@@ -1,5 +1,5 @@
 # ![logo-open-source](https://github.com/jordanabrahambaws/DotNetwork/blob/master/logo.ico?raw=true) DotNetwork (.NET)
-[![Join the chat at https://gitter.im/DotNetwork/Lobby](https://badges.gitter.im/DotNetwork/Lobby.svg)](https://gitter.im/DotNetwork/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/DotNetwork/Lobby](https://badges.gitter.im/DotNetwork/Lobby.svg)](https://gitter.im/DotNetwork/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build](https://travis-ci.org/jordanabrahambaws/DotNetwork.svg?branch=master)](https://travis-ci.org/jordanabrahambaws/DotNetwork)
 
 # About
 A fast and lightweight C# emulation game network for the RuneTek engine.
