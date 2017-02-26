@@ -5,6 +5,7 @@
 
 # About
 A fast and lightweight C# emulation game network for the RuneTek engine.
+![runetek](http://i.imgur.com/IeMKTqD.png)
 
 # Aim
 The aim for DotNetwork is to provide an open source game network built in C#. The backbone of the network is developed using the asynchronous event-driven network application framework from Netty. DotNetwork hopes to provide a easy-to-use and rapid code environment for anyone (even those inexperienced) to be able to build on top of this. This network is built for the java version of the [RuneTek](http://runescape.wikia.com/wiki/RuneTek) game engine.
