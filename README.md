@@ -17,7 +17,7 @@ DotNetwork is developed using a number of packages using the [Nuget](https://www
 - [Preconditions.NET](https://www.nuget.org/packages/Preconditions.NET/)
 
 # Installing DotNetwork
-You can easily install DotNetwork on your system, by using the provided [Setup](https://github.com/jordanabrahambaws/DotNetwork/blob/master/Installer/setup.msi) windows installer application. This installer will be updated with every master branch push. Be mindful that (for now), DotNetwork is not in the release stage and problems/bugs can be expected. Use this instaler to test out the application for yourself without the hassle of downloading/forking this repository.
+You can easily install DotNetwork on your system by using the provided [Setup](https://github.com/jordanabrahambaws/DotNetwork/blob/master/Installer/setup.msi) windows installer application. This installer will be updated with every master branch push. Be mindful that (for now), DotNetwork is not in the release stage and problems/bugs can be expected. Use this instaler to test out the application for yourself without the hassle of downloading/forking this repository.
 
 # Installer Prerequisites
 - Microsoft .NET Framework [4.6.1](https://www.microsoft.com/en-us/download/details.aspx?id=49981) (x86 and x64)
