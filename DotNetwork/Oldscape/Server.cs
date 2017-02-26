@@ -1,6 +1,7 @@
 ﻿// Copyright (c) DotNetwork. All rights reserved.
 // Licensed under the MIT license. See LICENSE file for full license information.
 
+using DotNetwork.Oldscape.Game.Model.Inter;
 using DotNetwork.Oldscape.Network;
 using DotNetwork.Oldscape.Network.Protocol.CacheFS;
 using DotNetwork.Oldscape.Network.Protocol.Packet;
@@ -34,6 +35,7 @@ namespace DotNetwork.Oldscape
 
             Console.WriteLine($"Registered {PacketRepository.PACKET_ENCODERS.Count} packet encoder(s).");
             Console.WriteLine($"Registered {PacketRepository.PACKET_DECODERS.Count} packet decoder(s).");
+            Console.WriteLine($"Registered {InterfaceListenerRepository.INTERFACE_LISTENERS.Count} interface listener(s).");
 
             Console.WriteLine("Starting the network...");
             NetworkBootstrap.StartNetwork();

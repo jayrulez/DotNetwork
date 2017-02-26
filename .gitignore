@@ -10,8 +10,8 @@ $RECYCLE.BIN/
 
 # Windows Installer files
 *.cab
-*.msi
 *.msm
+*.msi
 *.msp
 
 # Misc
@@ -25,6 +25,10 @@ $RECYCLE.BIN/
 /Cache
 *.vs
 /Rand
+/Client
+!setup.exe
+*.vdproj
+/DotNetwork/logo.ico
 
 # Windows shortcuts
 *.lnk

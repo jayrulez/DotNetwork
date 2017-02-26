@@ -40,15 +40,16 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Game
         protected override void Encode(IChannelHandlerContext context, GamePacketResponse message, IByteBuffer output)
         {
             var type = message.GetPacketType();
-            var buffer = message.GetBuilder().GetBuffer();
+            var payload = message.GetBuilder().GetBuffer();
 
-            output.WriteByte(message.GetId() + isaac.val());
+            output.WriteByte(message.GetId());
             if (type == PacketType.VARIABLE_BYTE)
-                output.WriteByte(buffer.WriterIndex);
+                output.WriteByte(payload.WriterIndex);
             else if (type == PacketType.VARIABLE_SHORT)
-                output.WriteShort(buffer.WriterIndex);
+                output.WriteShort(payload.WriterIndex);
 
-            output.WriteBytes(buffer);
+            output.WriteBytes(payload);
+
         }
 
     }

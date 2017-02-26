@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSUtilities", "RSUtilities\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rand", "Rand\Rand.csproj", "{7C8CBC34-7269-475F-9D7C-562D7FBD6650}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "Installer\Installer.vdproj", "{37865A5B-7B65-4453-B174-F5FFABEC9AF5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,7 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{72F289B7-A316-438E-AADD-5ADD0DD4819C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{72F289B7-A316-438E-AADD-5ADD0DD4819C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72F289B7-A316-438E-AADD-5ADD0DD4819C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{72F289B7-A316-438E-AADD-5ADD0DD4819C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72F289B7-A316-438E-AADD-5ADD0DD4819C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AFA0D36F-F8C5-4897-8D36-11D155D3E144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -33,6 +36,8 @@ Global
 		{7C8CBC34-7269-475F-9D7C-562D7FBD6650}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C8CBC34-7269-475F-9D7C-562D7FBD6650}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C8CBC34-7269-475F-9D7C-562D7FBD6650}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37865A5B-7B65-4453-B174-F5FFABEC9AF5}.Debug|Any CPU.ActiveCfg = Debug
+		{37865A5B-7B65-4453-B174-F5FFABEC9AF5}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

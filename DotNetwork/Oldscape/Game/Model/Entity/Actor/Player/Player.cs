@@ -2,7 +2,7 @@
 // Licensed under the MIT license. See LICENSE file for full license information.
 
 using DotNetty.Transport.Channels;
-using DotNetwork.Oldscape.Game.World.Region;
+using DotNetwork.Oldscape.Game.Model.Entity.Actor.Player.Manager;
 using DotNetwork.Oldscape.Network.Listener.Impl;
 using DotNetwork.Oldscape.Network.Protocol.Packet.Context;
 using DotNetwork.Oldscape.Network.Protocol.Packet.Context.Impl;
@@ -22,12 +22,24 @@ namespace DotNetwork.Oldscape.Game.Model.Entity.Actor.Player
         private readonly IChannel channel;
 
         /// <summary>
+        /// The interface manager.
+        /// </summary>
+        private readonly InterfaceManager interfaceManager;
+
+        /// <summary>
+        /// The social manager.
+        /// </summary>
+        private readonly SocialManager socialManager;
+
+        /// <summary>
         /// Constructs a new object.
         /// </summary>
         /// <param name="channel"></param>
         public Player(IChannel channel)
         {
             this.channel = channel;
+            interfaceManager = new InterfaceManager(this);
+            socialManager = new SocialManager(this);
         }
 
         /// <summary>
@@ -36,7 +48,16 @@ namespace DotNetwork.Oldscape.Game.Model.Entity.Actor.Player
         public void Start()
         {
             SendPacket(new StaticRegionContext(Position));
-            SendPacket(new RootInterfaceContext(548));
+            interfaceManager.SendLoginDefaults();
+            Refresh();
+        }
+
+        /// <summary>
+        /// Refreshes the player.
+        /// </summary>
+        private void Refresh()
+        {
+            socialManager.SendGameMessage("Welcome to RuneScape.");
         }
 
         /// <summary>
@@ -57,6 +78,24 @@ namespace DotNetwork.Oldscape.Game.Model.Entity.Actor.Player
         public IChannel GetChannel()
         {
             return channel;
+        }
+
+        /// <summary>
+        /// Gets the interface manager.
+        /// </summary>
+        /// <returns></returns>
+        public InterfaceManager GetInterfaceManager()
+        {
+            return interfaceManager;
+        }
+
+        /// <summary>
+        /// Gets the social manager.
+        /// </summary>
+        /// <returns></returns>
+        public SocialManager GetSocialManager()
+        {
+            return socialManager;
         }
 
     }

@@ -349,27 +349,10 @@ namespace DotNetwork.Oldscape.Network.Protocol.Packet
         public void PutSmart(int value)
         {
             CheckByteAccess();
-            if (value >= 128)
-                buffer.WriteShort(value + 32768);
-            else
+            if (value < 128)
                 buffer.WriteByte(value);
-        }
-
-        /// <summary>
-        /// Puts a large smart into the buffer.
-        /// </summary>
-        /// <param name="value"></param>
-        public void PutLargeSmart(int value)
-        {
-            CheckByteAccess();
-            if (value >= Int16.MaxValue)
-            {
-                buffer.WriteInt(value - Int32.MaxValue - 1);
-            }
             else
-            {
-                buffer.WriteShort(value >= 0 ? value : 32767);
-            }
+                buffer.WriteShort(value);
         }
 
         /// <summary>
@@ -380,19 +363,10 @@ namespace DotNetwork.Oldscape.Network.Protocol.Packet
         {
             CheckByteAccess();
 
-            buffer.WriteBytes(Encoding.ASCII.GetBytes(str));
+            char[] chars = str.ToCharArray();
+            foreach (char c in chars)
+                buffer.WriteByte((byte)c);
             buffer.WriteByte(IByteBufferExtensions.STRING_TERMINATOR);
-        }
-
-        /// <summary>
-        /// Puts a jagex string into the buffer.
-        /// </summary>
-        /// <param name="str"></param>
-        public void PutJagString(string str)
-        {
-            CheckByteAccess();
-
-            IByteBufferExtensions.WriteJagString(buffer, str);
         }
 
         /// <summary>

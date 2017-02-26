@@ -21,18 +21,18 @@ namespace DotNetwork.Oldscape.Network.Protocol.Packet
         /// <summary>
         /// A dictionary of packet encoders.
         /// </summary>
-        public static readonly Dictionary<Type, object> PACKET_ENCODERS = ConstructEncoders();
+        public static readonly Dictionary<Type, object> PACKET_ENCODERS = BuildEncoders();
 
         /// <summary>
         /// A dictionary of packet decoders.
         /// </summary>
-        public static readonly Dictionary<int[], PacketDecoder> PACKET_DECODERS = ConstructDecoders();
+        public static readonly Dictionary<int[], PacketDecoder> PACKET_DECODERS = BuildDecoders();
 
         /// <summary>
         /// Constructs the packet encoders for the dictionary.
         /// </summary>
         /// <returns></returns>
-        private static Dictionary<Type, object> ConstructEncoders()
+        private static Dictionary<Type, object> BuildEncoders()
         {
             Dictionary<Type, object> builder = new Dictionary<Type, object>();
             try
@@ -57,7 +57,7 @@ namespace DotNetwork.Oldscape.Network.Protocol.Packet
         /// Constructs the packet decpders for the dictionary.
         /// </summary>
         /// <returns></returns>
-        private static Dictionary<int[], PacketDecoder> ConstructDecoders()
+        private static Dictionary<int[], PacketDecoder> BuildDecoders()
         {
             Dictionary<int[], PacketDecoder> builder = new Dictionary<int[], PacketDecoder>();
             try

@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file for full license information.
 
 using DotNetty.Buffers;
+using System;
 using System.Text;
 
 namespace DotNetwork.Oldscape.Util.Buf
@@ -77,33 +78,6 @@ namespace DotNetwork.Oldscape.Util.Buf
                 buffer.SetInt(start + index * 8 + 4, v0);
             }
             return buffer;
-        }
-
-        /// <summary>
-        /// Converts byte data from a byte buffer into a readable 'jagex' string.
-        /// </summary>
-        /// <param name="buffer"></param>
-        /// <returns></returns>
-        public static string ReadJagString(IByteBuffer buffer)
-        {
-            var builder = new StringBuilder();
-            byte a;
-            buffer.ReadByte();
-            while (buffer.IsReadable() && (a = buffer.ReadByte()) != STRING_TERMINATOR)
-                builder.Append((char)a);
-            return builder.ToString();
-        }
-
-        /// <summary>
-        /// Writes a jag string into the buffer.
-        /// </summary>
-        /// <param name="buffer"></param>
-        /// <param name="str"></param>
-        public static void WriteJagString(IByteBuffer buffer, string str)
-        {
-            buffer.WriteByte(0);
-            buffer.WriteBytes(Encoding.ASCII.GetBytes(str));
-            buffer.WriteByte(STRING_TERMINATOR);
         }
 
     }

@@ -49,14 +49,14 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Login
             for (int index = 0; index < clientKeys.Length; index++)
                 clientKeys[index] = input.ReadInt();
             input.SkipBytes(8);
-            String password = IByteBufferExtensions.ReadString(input);
+            string password = IByteBufferExtensions.ReadString(input);
             IByteBuffer buffer = IByteBufferExtensions.DecipherWithXTEA(input, clientKeys);
-            String username = IByteBufferExtensions.ReadString(buffer);
+            string username = IByteBufferExtensions.ReadString(buffer);
             buffer.ReadByte();
             buffer.ReadUnsignedShort();
             buffer.ReadUnsignedShort();
             buffer.SkipBytes(24);
-            String token = IByteBufferExtensions.ReadString(buffer);
+            string token = IByteBufferExtensions.ReadString(buffer);
             buffer.ReadInt();
             var machineInformation = MachineInformation.Decode(buffer);
             buffer.ReadInt();
@@ -74,7 +74,6 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Login
             var encoder = new Rand(serverKeys);
             var isaacGroup = new IsaacRandGroup(decoder, encoder);
 
-            Console.WriteLine("[LOGIN REQUEST] Version: " + version + ", Username: " + username + ", Password: " + password + ", Token: " + token);
             output.Add(new LoginRequest(version, username, password, token, crc, isaacGroup, machineInformation));
         }
     }
