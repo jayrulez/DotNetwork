@@ -10,7 +10,7 @@ namespace DotNetwork.Oldscape.Network.Protocol.Packet.Decoder.Impl
 {
 
     /// <summary>
-    /// 
+    /// The action button decoder.
     /// </summary>
     sealed class ActionButtonDecoder : PacketDecoder
     {
