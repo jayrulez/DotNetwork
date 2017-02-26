@@ -16,6 +16,9 @@ DotNetwork is developed using a number of packages using the [Nuget](https://www
 - [SharpZipLab](https://icsharpcode.github.io/SharpZipLib/) for [GZIP](https://en.wikipedia.org/wiki/Gzip) and [BZIP2](https://en.wikipedia.org/wiki/Bzip2) decompression/compression.
 - [Preconditions.NET](https://www.nuget.org/packages/Preconditions.NET/)
 
+# Installing DotNetwork
+For easy installment of DotNetwork on your system, use the provided [Setup](https://github.com/jordanabrahambaws/DotNetwork/blob/master/Installer/setup.exe) executable. These builds will be updated to the installer every master branch push, and be mindful that (for now), DotNetwork is not in the release stage. But you can install and test out the application for yourself without the hassle of downloading/forking this repository.
+
 # Acknowledgements
 - [OpenRSS](https://github.com/Impulser/OpenRSS) by [Impulser](https://github.com/Impulser).
 - [ISAAC](http://www.burtleburtle.net/bob/rand/isaacafa.html) cryptography random number generator.
