@@ -1,3 +1,4 @@
 language: csharp
 solution: DotNetwork.sln
-mono: none
+mono:
+    - 3.8.0
