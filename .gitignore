@@ -26,7 +26,7 @@ $RECYCLE.BIN/
 *.vs
 /Rand
 /Client
-!setup.exe
+!DotNetwork Setup.exe
 *.vdproj
 /DotNetwork/logo.ico
 
