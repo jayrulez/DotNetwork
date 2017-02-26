@@ -26,9 +26,10 @@ $RECYCLE.BIN/
 *.vs
 /Rand
 /Client
-!setup.exe
+!setup.msi
 *.vdproj
 /DotNetwork/logo.ico
+/Installer/setup.exe
 
 # Windows shortcuts
 *.lnk
@@ -62,3 +63,4 @@ Network Trash Folder
 Temporary Items
 .apdisk
 *.userprefs
+Installer/setup.exe
