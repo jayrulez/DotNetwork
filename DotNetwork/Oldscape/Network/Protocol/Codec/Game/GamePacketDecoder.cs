@@ -73,7 +73,7 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Game
             //Decode packet id.
             if (state == PacketDecoderState.PACKET_ID)
             {
-                id = input.ReadByte();
+                id = (input.ReadByte() - isaac.val()) & 0xff;
                 if (id > PacketConstants.PACKET_SIZES.Length)
                     throw new Exception("Invalid packet id: " + id);
                 size = PacketConstants.PACKET_SIZES[id];

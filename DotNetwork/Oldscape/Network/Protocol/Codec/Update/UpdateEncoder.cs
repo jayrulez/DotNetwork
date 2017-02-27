@@ -26,7 +26,7 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Update
             int archive = message.GetArchive();
             var container = message.GetContainer();
 
-            int compression = container.ReadByte();
+            int compression = container.ReadByte() & 0xff;
             int length = container.ReadInt();
 
             output.WriteByte(index);
@@ -38,11 +38,12 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Update
             if (bytes > 504)
                 bytes = 504;
             output.WriteBytes(container.ReadBytes(bytes));
-            while ((bytes = container.ReadableBytes) != 0)
+            for (;;)
             {
+                bytes = container.ReadableBytes;
                 if (bytes == 0)
                     break;
-                if (bytes > 511)
+                else if (bytes > 511)
                     bytes = 511;
                 output.WriteByte(0xff);
                 output.WriteBytes(container.ReadBytes(bytes));

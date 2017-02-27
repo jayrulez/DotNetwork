@@ -39,17 +39,36 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Game
         /// <param name="output"></param>
         protected override void Encode(IChannelHandlerContext context, GamePacketResponse message, IByteBuffer output)
         {
+            output.WriteBytes(GetData(message));
+        }
+
+        /// <summary>
+        /// Gets the encoded data of a packet.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        private IByteBuffer GetData(GamePacketResponse message)
+        {
             var type = message.GetPacketType();
             var payload = message.GetBuilder().GetBuffer();
+            int bytes = payload.ReadableBytes;
 
-            output.WriteByte(message.GetId());
+            var buffer = Unpooled.Buffer(bytes);
+            buffer.WriteByte(message.GetId() + isaac.val());
             if (type == PacketType.VARIABLE_BYTE)
-                output.WriteByte(payload.WriterIndex);
+            {
+                if (bytes >= 256)
+                    throw new Exception("Payload too long for variable byte packet.");
+                buffer.WriteByte(bytes);
+            }
             else if (type == PacketType.VARIABLE_SHORT)
-                output.WriteShort(payload.WriterIndex);
-
-            output.WriteBytes(payload);
-
+            {
+                if (bytes >= 65536)
+                    throw new Exception("Payload too long for variable short packet.");
+                buffer.WriteShort(bytes);
+            }
+            buffer.WriteBytes(payload);
+            return buffer;
         }
 
     }

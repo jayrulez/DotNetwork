@@ -24,7 +24,7 @@ namespace DotNetwork.Oldscape.Game.Model.Inter.Impl
         /// <param name="item"></param>
         public void Execute(Player player, int interfaceId, int buttonId, int slot, int item)
         {
-            Console.WriteLine($"Interface listener not found: Interface[{interfaceId}], Button[{buttonId}], Slot[{slot}], Item[{item}]");
+            player.GetSocialManager().SendGameMessage($"Interface listener not found: Interface[{interfaceId}], Button[{buttonId}], Slot[{slot}], Item[{item}]");
         }
 
         /// <summary>

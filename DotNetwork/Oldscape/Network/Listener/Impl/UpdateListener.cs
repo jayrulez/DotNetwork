@@ -31,11 +31,11 @@ namespace DotNetwork.Oldscape.Network.Listener.Impl
 
                 //Get the cache data based on the requested index and archive.
                 if (index == 0xff && archive == 0xff)
-                    container = Unpooled.CopiedBuffer(CacheManager.GetChecksumBuffer());
+                    container = Unpooled.WrappedBuffer(CacheManager.GetChecksumBuffer());
                 else
                 {
-                    container = Unpooled.CopiedBuffer(CacheManager.GetCache().GetStore().Read(index, archive).array());
-                    if (index != 0xff)
+                    container = Unpooled.WrappedBuffer(CacheManager.GetCache().GetStore().Read(index, archive).array());
+                    if (index != 0xff && (container.ReadableBytes > 1))
                         container = container.Slice(0, container.ReadableBytes - 2);
                 }
 

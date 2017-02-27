@@ -5,6 +5,7 @@ using DotNetty.Codecs;
 using System.Collections.Generic;
 using DotNetty.Buffers;
 using DotNetty.Transport.Channels;
+using System;
 
 namespace DotNetwork.Oldscape.Network.Protocol.Codec.Update
 {
@@ -21,10 +22,10 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Update
         /// <param name="output"></param>
         protected override void Decode(IChannelHandlerContext context, IByteBuffer input, List<object> output)
         {
-            if (!input.IsReadable())
+            if (!input.IsReadable() || input.ReadableBytes < 4)
                 return;
 
-            UpdateType type = Update.GetUpdateType(input.ReadByte());
+            UpdateType type = Update.GetUpdateType(input.ReadByte() & 0xff);
             if (type == UpdateType.NONE)
             {
                 input.SkipBytes(3);
@@ -35,12 +36,13 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Update
             {
                 case UpdateType.LOW_PRIORITY_UPDATE:
                 case UpdateType.HIGH_PRIORITY_UPDATE:
-                    int index = input.ReadByte();
+                    int index = input.ReadByte() & 0xff;
                     int archive = input.ReadUnsignedShort();
 
                     output.Add(new UpdateRequest(index, archive, type == UpdateType.HIGH_PRIORITY_UPDATE));
                     break;
                 case UpdateType.ENCRYPTION_UPDATE:
+                    input.SkipBytes(3);
                     break;
             }
         }

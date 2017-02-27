@@ -39,9 +39,7 @@ namespace DotNetwork.Oldscape.Network
             {
                 NetworkListener listener = Preconditions.Check.NotNull(context.Channel.GetAttribute(CURR_LISTENER).Get(), "Network attribute key is null.");
                 if (listener != null && context.Channel.Registered)
-                {
                     listener.MessageRead(context, message);
-                }
             }
             finally
             {
