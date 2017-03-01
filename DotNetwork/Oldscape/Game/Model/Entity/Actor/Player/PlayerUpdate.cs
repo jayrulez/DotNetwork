@@ -1,4 +1,5 @@
-﻿//Author Emperor
+﻿// Copyright (c) DotNetwork. All rights reserved.
+// Licensed under the MIT license. See LICENSE file for full license information.
 
 using DotNetwork.Oldscape.Network.Protocol.Packet;
 
@@ -25,7 +26,7 @@ namespace DotNetwork.Oldscape.Game.Model.Entity.Actor.Player
             buffer.PutBits(1, 1);
             buffer.PutBits(2, 0);
             WriteUpdateBlocks(player, block);
-            buffer.PutBits(8, 0);//or 1
+            buffer.PutBits(8, 0);
             if (block.GetBuffer().ReadableBytes > 0)
             {
                 buffer.PutBits(11, 2047);
