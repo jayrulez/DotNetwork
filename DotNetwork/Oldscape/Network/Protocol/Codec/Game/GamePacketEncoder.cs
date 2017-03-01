@@ -54,7 +54,7 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Game
             int bytes = payload.ReadableBytes;
 
             var buffer = Unpooled.Buffer(bytes);
-            buffer.WriteByte(message.GetId() + isaac.val());
+            buffer.WriteByte(message.GetId()/* + isaac.val()*/);
             if (type == PacketType.VARIABLE_BYTE)
             {
                 if (bytes >= 256)

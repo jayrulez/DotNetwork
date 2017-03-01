@@ -32,6 +32,11 @@ namespace DotNetwork.Oldscape.Game.Model.Entity.Actor.Player
         private readonly SocialManager socialManager;
 
         /// <summary>
+        /// The appearance manager.
+        /// </summary>
+        private readonly AppearanceManager appearanceManager;
+
+        /// <summary>
         /// Constructs a new object.
         /// </summary>
         /// <param name="channel"></param>
@@ -40,6 +45,7 @@ namespace DotNetwork.Oldscape.Game.Model.Entity.Actor.Player
             this.channel = channel;
             interfaceManager = new InterfaceManager(this);
             socialManager = new SocialManager(this);
+            appearanceManager = new AppearanceManager(this);
         }
 
         /// <summary>
@@ -48,6 +54,8 @@ namespace DotNetwork.Oldscape.Game.Model.Entity.Actor.Player
         public void Start()
         {
             SendPacket(new StaticRegionContext(Position));
+            appearanceManager.Refresh();
+            SendPacket(new PlayerUpdateContext(this));
             interfaceManager.SendLoginDefaults();
             Refresh();
         }
@@ -96,6 +104,15 @@ namespace DotNetwork.Oldscape.Game.Model.Entity.Actor.Player
         public SocialManager GetSocialManager()
         {
             return socialManager;
+        }
+
+        /// <summary>
+        /// Gets the appearance manager.
+        /// </summary>
+        /// <returns></returns>
+        public AppearanceManager GetAppearanceManager()
+        {
+            return appearanceManager;
         }
 
     }

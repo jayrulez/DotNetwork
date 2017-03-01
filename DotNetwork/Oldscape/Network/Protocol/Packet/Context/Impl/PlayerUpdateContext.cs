@@ -1,15 +1,15 @@
 ﻿// Copyright (c) DotNetwork. All rights reserved.
 // Licensed under the MIT license. See LICENSE file for full license information.
 
-using DotNetwork.Oldscape.Network.Protocol.Packet.Context.Impl;
+using DotNetwork.Oldscape.Game.Model.Entity.Actor.Player;
 
-namespace DotNetwork.Oldscape.Game.Model.Entity.Actor.Player.Manager
+namespace DotNetwork.Oldscape.Network.Protocol.Packet.Context.Impl
 {
 
     /// <summary>
-    /// The social manager.
+    /// The context used for updating a player.
     /// </summary>
-    sealed class SocialManager
+    sealed class PlayerUpdateContext : PacketContext
     {
 
         /// <summary>
@@ -21,18 +21,18 @@ namespace DotNetwork.Oldscape.Game.Model.Entity.Actor.Player.Manager
         /// Constructs a new object.
         /// </summary>
         /// <param name="player"></param>
-        public SocialManager(Player player)
+        public PlayerUpdateContext(Player player)
         {
             this.player = player;
         }
 
         /// <summary>
-        /// Sends a game message.
+        /// Gets the player.
         /// </summary>
-        /// <param name="message"></param>
-        public void SendGameMessage(string message)
+        /// <returns></returns>
+        public Player GetPlayer()
         {
-            player.SendPacket(new MessageContext(0, message, false));
+            return player;
         }
 
     }

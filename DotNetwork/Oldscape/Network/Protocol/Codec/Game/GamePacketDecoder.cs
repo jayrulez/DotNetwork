@@ -15,7 +15,7 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Game
     /// <summary>
     /// The packet decoder.
     /// </summary>
-    sealed class GamePacketDecoder : ByteToMessageDecoder
+    sealed class GamePacketDecoder : ReplayingDecoder<PacketDecoderState>
     {
 
         /// <summary>
@@ -39,21 +39,11 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Game
         private int size;
 
         /// <summary>
-        /// The packet type.
-        /// </summary>
-        private PacketType type;
-
-        /// <summary>
-        /// The state of a current packet decoder.
-        /// </summary>
-        private PacketDecoderState state = PacketDecoderState.PACKET_ID;
-
-        /// <summary>
         /// Constructs a new object.
         /// </summary>
         /// <param name="player"></param>
         /// <param name="isaac"></param>
-        public GamePacketDecoder(Player player, Rand isaac)
+        public GamePacketDecoder(Player player, Rand isaac) : base(PacketDecoderState.PACKET_ID)
         {
             this.player = player;
             this.isaac = isaac;
@@ -67,48 +57,50 @@ namespace DotNetwork.Oldscape.Network.Protocol.Codec.Game
         /// <param name="output"></param>
         protected override void Decode(IChannelHandlerContext context, IByteBuffer input, List<object> output)
         {
-            if (!input.IsReadable() || !player.GetChannel().Registered)
-                return;
 
-            //Decode packet id.
-            if (state == PacketDecoderState.PACKET_ID)
+            while (input.ReadableBytes > 0 && input.IsReadable())
             {
-                id = (input.ReadByte() - isaac.val()) & 0xff;
-                if (id > PacketConstants.PACKET_SIZES.Length)
-                    throw new Exception("Invalid packet id: " + id);
-                size = PacketConstants.PACKET_SIZES[id];
-
-                type = PacketConstants.GetPacketType(id);
-                if (type == PacketType.NONE)
-                    throw new Exception("Packet type not found for id: " + id);
-
-                state = type != PacketType.FIXED ? PacketDecoderState.PACKET_SIZE : PacketDecoderState.PACKET_PAYLOAD;
-            }
-
-            //Decode packet size.
-            if (state == PacketDecoderState.PACKET_SIZE)
-            {
-                if (type == PacketType.VARIABLE_BYTE)
-                    size = input.ReadByte();
-                else if (type == PacketType.VARIABLE_SHORT)
+                switch (State)
                 {
-                    if (input.ReadableBytes >= 2)
-                        size = input.ReadUnsignedShort();
+                    case PacketDecoderState.PACKET_ID:
+                        id = (input.ReadByte()/* - isaac.val()*/) & 0xff;
+                        if (id >= PacketConstants.PACKET_SIZES.Length || id < 0)
+                            break;
+                        Checkpoint(PacketDecoderState.PACKET_SIZE);
+                        break;
+                    case PacketDecoderState.PACKET_SIZE:
+                        size = PacketConstants.PACKET_SIZES[id];
+                        if (size < 0)
+                        {
+                            switch (size)
+                            {
+                                case -1:
+                                    if (input.IsReadable())
+                                        size = input.ReadByte() & 0xff;
+                                    break;
+                                case -2:
+                                    if (input.ReadableBytes >= 2)
+                                        size = input.ReadUnsignedShort();
+                                    break;
+                                default:
+                                    size = input.ReadableBytes;
+                                    break;
+                            }
+                        }
+                        Checkpoint(PacketDecoderState.PACKET_PAYLOAD);
+                        break;
+                    case PacketDecoderState.PACKET_PAYLOAD:
+                        if (input.ReadableBytes >= size)
+                        {
+                            if (size < 0)
+                                return;
+                            byte[] payload = new byte[size];
+                            input.ReadBytes(payload, 0, size);
+                            output.Add(new GamePacketRequest(player, id, Unpooled.WrappedBuffer(payload)));
+                        }
+                        Checkpoint(PacketDecoderState.PACKET_ID);
+                        break;
                 }
-
-                state = PacketDecoderState.PACKET_PAYLOAD;
-            }
-
-            //Decode payload.
-            if (state == PacketDecoderState.PACKET_PAYLOAD)
-            {
-                if (input.ReadableBytes < size)
-                    return;
-
-                IByteBuffer payload = input.ReadBytes(size);
-                state = PacketDecoderState.PACKET_ID;
-
-                output.Add(new GamePacketRequest(player, id, payload));
             }
 
         }

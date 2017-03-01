@@ -13,9 +13,26 @@ namespace DotNetwork.Oldscape.Game.Model.Entity.Actor
     {
 
         /// <summary>
+        /// The renderer used for each actor inside the game.
+        /// </summary>
+        protected readonly ActorRenderer actorRenderer;
+
+        /// <summary>
         /// Constructs a new object.
         /// </summary>
-        public Actor() : base(GameWorld.DEFAULT_POSITION) { }
+        public Actor() : base(GameWorld.DEFAULT_POSITION)
+        {
+            actorRenderer = new ActorRenderer();
+        }
+
+        /// <summary>
+        /// Gets the actor renderer.
+        /// </summary>
+        /// <returns></returns>
+        public ActorRenderer GetActorRenderer()
+        {
+            return actorRenderer;
+        }
 
     }
 }

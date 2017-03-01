@@ -316,10 +316,16 @@
   <ItemGroup>
     <Compile Include="Oldscape\Constants.cs" />
     <Compile Include="Oldscape\Game\Model\Entity\Actor\Actor.cs" />
+    <Compile Include="Oldscape\Game\Model\Entity\Actor\ActorRenderer.cs" />
+    <Compile Include="Oldscape\Game\Model\Entity\Actor\Player\Block\AppearanceBlock.cs" />
     <Compile Include="Oldscape\Game\Model\Entity\Actor\Player\Info\MachineInformation.cs" />
+    <Compile Include="Oldscape\Game\Model\Entity\Actor\Player\Manager\AppearanceManager.cs" />
     <Compile Include="Oldscape\Game\Model\Entity\Actor\Player\Manager\InterfaceManager.cs" />
     <Compile Include="Oldscape\Game\Model\Entity\Actor\Player\Manager\SocialManager.cs" />
     <Compile Include="Oldscape\Game\Model\Entity\Actor\Player\Player.cs" />
+    <Compile Include="Oldscape\Game\Model\Entity\Actor\Update\UpdateBlock.cs" />
+    <Compile Include="Oldscape\Game\Model\Entity\Actor\Player\PlayerUpdate.cs" />
+    <Compile Include="Oldscape\Game\Model\Entity\Actor\Update\Reference\Appearance.cs" />
     <Compile Include="Oldscape\Game\Model\Entity\Entity.cs" />
     <Compile Include="Oldscape\Game\Model\Inter\Impl\DefaultInterfaceListener.cs" />
     <Compile Include="Oldscape\Game\Model\Inter\Impl\EquipmentListener.cs" />
@@ -360,6 +366,7 @@
     <Compile Include="Oldscape\Network\Protocol\Packet\Context\Impl\InterfaceContext.cs" />
     <Compile Include="Oldscape\Network\Protocol\Packet\Context\Impl\MessageContext.cs" />
     <Compile Include="Oldscape\Network\Protocol\Packet\Context\Impl\PingContext.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\Context\Impl\PlayerUpdateContext.cs" />
     <Compile Include="Oldscape\Network\Protocol\Packet\Context\Impl\RootInterfaceContext.cs" />
     <Compile Include="Oldscape\Network\Protocol\Packet\Context\Impl\StaticRegionContext.cs" />
     <Compile Include="Oldscape\Network\Protocol\Packet\Context\PacketContext.cs" />
@@ -369,10 +376,12 @@
     <Compile Include="Oldscape\Network\Protocol\Packet\DataType.cs" />
     <Compile Include="Oldscape\Network\Protocol\Packet\Decoder\Impl\ActionButtonDecoder.cs" />
     <Compile Include="Oldscape\Network\Protocol\Packet\Decoder\Impl\PingDecoder.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\Decoder\Impl\PublicMessageDecoder.cs" />
     <Compile Include="Oldscape\Network\Protocol\Packet\Decoder\PacketDecoder.cs" />
     <Compile Include="Oldscape\Network\Protocol\Packet\Encoder\Impl\InterfaceEncoder.cs" />
     <Compile Include="Oldscape\Network\Protocol\Packet\Encoder\Impl\MessageEncoder.cs" />
     <Compile Include="Oldscape\Network\Protocol\Packet\Encoder\Impl\PingEncoder.cs" />
+    <Compile Include="Oldscape\Network\Protocol\Packet\Encoder\Impl\PlayerUpdateEncoder.cs" />
     <Compile Include="Oldscape\Network\Protocol\Packet\Encoder\Impl\StaticRegionEncoder.cs" />
     <Compile Include="Oldscape\Network\Protocol\Packet\Encoder\PacketEncoder.cs" />
     <Compile Include="Oldscape\Network\Protocol\Packet\Encoder\Impl\RootInterfaceEncoder.cs" />
@@ -443,6 +452,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
